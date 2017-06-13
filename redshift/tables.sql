@@ -1,3 +1,5 @@
+-- Crear tabla
+
 CREATE TABLE phones_accelerometer (
   index INTEGER,
   arrival_time TIMESTAMP,
@@ -14,11 +16,15 @@ DISTKEY(user_code);
 
 DROP TABLE phones_accelerometer;
 
+-- Cargar datos desde S3
+
 COPY phones_accelerometer
 FROM 's3://iniciativa-big-data/phones-data/'
 DELIMITER ','
 TIMEFORMAT AS 'epochmillisecs'
 CREDENTIALS 'aws_iam_role=arn:aws:iam::129822709161:role/iniciativa-big-data-redshift';
+
+-- Algunas consultas de ejemplo
 
 SELECT * FROM phones_accelerometer LIMIT 10;
 
