@@ -1,46 +1,58 @@
 -- Crear tabla
 
-CREATE TABLE phones_accelerometer (
-  index INTEGER,
-  arrival_time TIMESTAMP,
-  creation_time BIGINT,
-  x FLOAT,
-  y FLOAT,
-  z FLOAT,
-  user_code CHAR(1),
-  model VARCHAR(20),
-  device VARCHAR(20),
-  gt VARCHAR(10)
-)
-DISTKEY(user_code);
-
-DROP TABLE phones_accelerometer;
+CREATE TABLE trips (
+  VendorID INTEGER,
+  tpep_pickup_datetime TIMESTAMP,
+  tpep_dropoff_datetime TIMESTAMP,
+  passenger_count INTEGER,
+  trip_distance FLOAT,
+  pickup_longitude FLOAT,
+  pickup_latitude FLOAT,
+  RatecodeID INTEGER,
+  store_and_fwd_flag CHAR(1),
+  dropoff_longitude FLOAT,
+  dropoff_latitude FLOAT,
+  payment_type INTEGER,
+  fare_amount FLOAT,
+  extra FLOAT,
+  mta_tax FLOAT,
+  tip_amount FLOAT,
+  tolls_amount FLOAT,
+  improvement_surcharge FLOAT,
+  total_amount FLOAT
+) DISTKEY(VendorID);
 
 -- Cargar datos desde S3
 
-COPY phones_accelerometer
-FROM 's3://iniciativa-big-data/phones-data/'
+COPY trips
+FROM 's3://mzaforas-test'
 DELIMITER ','
-TIMEFORMAT AS 'epochmillisecs'
-CREDENTIALS 'aws_iam_role=arn:aws:iam::129822709161:role/iniciativa-big-data-redshift';
+CREDENTIALS 'aws_iam_role=arn:aws:iam::534508164501:role/redshift-role-curso-bigdata-ai';
 
 -- Algunas consultas de ejemplo
 
-SELECT * FROM phones_accelerometer LIMIT 10;
+SELECT * FROM trips LIMIT 10;
 
-SELECT * FROM stl_load_errors ORDER BY starttime DESC;
+-- pasajeros totales por proveedor
+SELECT VendorID, RatecodeID, count(passenger_count) as passengers
+FROM trips
+GROUP BY VendorID, RatecodeID
+ORDER BY VendorID;
 
-SELECT model, device, count(*) as num_elem
-FROM phones_accelerometer
-GROUP BY model, device
-ORDER BY model;
+-- distancia media de los viajes respecto al número de pasajeros
+SELECT passenger_count, avg(trip_distance) as avg_distance
+FROM trips
+GROUP BY passenger_count
+ORDER BY passenger_count;
 
-SELECT user_code, avg(x) as avg_x, avg(y) as avg_y, avg(z) as avg_z
-FROM phones_accelerometer
-GROUP BY user_code
-ORDER BY user_code;
+-- módulo de las coordenadas de origen y destino respecto del tipo de pago
+SELECT payment_type, avg(sqrt((dropoff_longitude-pickup_longitude)^2 + (dropoff_latitude-trips.pickup_latitude)^2))
+FROM trips
+GROUP BY payment_type
+ORDER BY payment_type;
 
-SELECT user_code, gt, max(sqrt(x^2 + y^2 + z^2))
-FROM phones_accelerometer
-GROUP BY user_code, gt
-ORDER BY gt;
+-- máxima propina respecto al número de pasajeros
+SELECT passenger_count, max(tip_amount) as max_tip
+FROM trips
+GROUP BY passenger_count
+ORDER BY passenger_count;
