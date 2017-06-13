@@ -1,0 +1,3 @@
+aws s3 cp --recursive split s3://iniciativa-big-data/phones-data/
+aws s3 ls
+aws s3 ls iniciativa-big-data/phones-data/
