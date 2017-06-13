@@ -25,7 +25,7 @@ CREATE TABLE trips (
 -- Cargar datos desde S3
 
 COPY trips
-FROM 's3://mzaforas-test'
+FROM 's3://<tu bucket de S3>'
 DELIMITER ','
 CREDENTIALS 'aws_iam_role=arn:aws:iam::534508164501:role/redshift-role-curso-bigdata-ai';
 
