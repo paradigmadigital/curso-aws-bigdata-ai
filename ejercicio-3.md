@@ -2,7 +2,8 @@
 
 # Ejercicio 3 - Redshift: load data
 * Hacer click dentro de nuestro cluster y obtener los datos de conexión de la pestaña **configuración**
-* Usar estos datos para configurar nuestro cliente SQL (SQL workbench, Squirrel, PyCharm, IntelliJ...)
+* Usar estos datos para configurar nuestro cliente SQL (SQL workbench, Squirrel, PyCharm, IntelliJ... si es necesario el driver está disponible [aquí](http://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html#download-jdbc-driver)
+)
 * Abrir una sesión con nuestro cliente SQL
 * Usar el código SQL disponible en redshift/tables.sql:
     * Crear las tablas en redshift
