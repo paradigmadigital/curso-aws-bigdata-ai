@@ -2,6 +2,8 @@
 
 # Ejercicio 4 - Kinesis
 
+![Flujo](https://raw.githubusercontent.com/paradigmadigital/curso-aws-bigdata-ai/master/kinesis/kinesis.png)
+
 ## Kinesis Streams: generar datos desde un productor y volcarlos en Kinesis Streams
 
 * Ir a la consola de AWS Kinesis Streams y crear un nuevo stream

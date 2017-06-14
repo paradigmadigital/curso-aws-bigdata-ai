@@ -2,8 +2,8 @@
 
 CREATE TABLE trips (
   VendorID INTEGER,
-  tpep_pickup_datetime TIMESTAMP,
-  tpep_dropoff_datetime TIMESTAMP,
+  tpep_pickup_datetime TIMESTAMP encode DELTA,
+  tpep_dropoff_datetime TIMESTAMP encode DELTA,
   passenger_count INTEGER,
   trip_distance FLOAT,
   pickup_longitude FLOAT,
@@ -19,8 +19,11 @@ CREATE TABLE trips (
   tip_amount FLOAT,
   tolls_amount FLOAT,
   improvement_surcharge FLOAT,
-  total_amount FLOAT
-) DISTKEY(VendorID);
+  total_amount FLOAT,
+  PRIMARY KEY (VendorID)
+)
+  DISTSTYLE EVEN
+  INTERLEAVED SORTKEY (pickup_longitude, pickup_latitude, total_amount, payment_type, trip_distance, passenger_count, tpep_pickup_datetime);
 
 -- Cargar datos desde S3
 
@@ -30,6 +33,8 @@ DELIMITER ','
 CREDENTIALS 'aws_iam_role=arn:aws:iam::534508164501:role/redshift-role-curso-bigdata-ai';
 
 -- Algunas consultas de ejemplo
+
+SELECT count(*) FROM trips;
 
 SELECT * FROM trips LIMIT 10;
 
