@@ -10,7 +10,7 @@
     * Step 2. Instance Type
         * **Type:** t2-micro
     * Step 3. Configure Instance
-        * **Network:** vpc-1e056977
+        * **Network:** vpc-580ad53f
         * **IAM role:** ec2-role-curso-bigdata-ai
     * Step 5. Add Tags
         * **Key:** owner
