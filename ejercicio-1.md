@@ -12,10 +12,15 @@
     * Step 3. Configure Instance
         * **Network:** vpc-1e056977
         * **IAM role:** ec2-role-curso-bigdata-ai
+    * Step 5. Add Tags
+        * **Key:** owner
+        * **Value:** <tu username>
     * Step 6. Configure Security Group
         * **Select an existing security group:** sg-7b6a7102 | curso-bigdata-ai
     * Launch
         * **key pair:** key-curso-bigdata-ai
+    * Launch status
+        * Anotar el identificador que le asigna a nuestra instancia
 * Entrar por ssh en la instancia: 
     * `$ ssh -i <path a la clave key-curso-bigdata-ai.pem> ec2-user@<DNS de tu instancia>`
 * Descargar dataset desde el bucket de la iniciativa a EC2:
