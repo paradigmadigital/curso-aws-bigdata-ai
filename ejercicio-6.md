@@ -6,8 +6,8 @@
 * Ir al **Catalog Manager** y definir una nueva tabla en **Add table**:
     * **Database:** Create new database
     * **Name:** Nombre significativo, mejor si incluye nombre de usuario
-    * 
-    * **Location of Input Data Set:** ruta al directorio de nuestro bucket donde están los csv, por ejemplo *s3://<mi-bucket>/csv/images/* (sustituir el nombre del bucket por el nuestro)
+    * **Table:** Nombre significativo, mejor si incluye nombre de usuario
+    * **Location of Input Data Set:** ruta al directorio de nuestro bucket donde están los csv, por ejemplo *s3://\<mi-bucket\>/csv/images/* (sustituir el nombre del bucket por el nuestro)
     * **Data format**: CSV
     * **Columns:** Bulk add columns
     ```
@@ -28,7 +28,7 @@
     ```
     * No definimos data partitions
     * Un vez hayamos creado la tabla podemos experimentar con la consola de queries interactivas escribiendo SQL. Algunas ideas:
-        * Hacer una query que devuelva todos los elementos (SELECT * FROM <nombre tabla> LIMIT 10;)
+        * Hacer una query que devuelva todos los elementos (SELECT * FROM \<nombre tabla\> LIMIT 10;)
         * Hacer una query que haga un filtro con WHERE
         * Formatear una query
         * Autocompletar en el editor de queries con *Ctrl + Space*
