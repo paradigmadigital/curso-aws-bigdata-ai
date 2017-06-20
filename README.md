@@ -9,3 +9,5 @@
 [Ejercicio 4 - Kinesis](https://github.com/paradigmadigital/curso-aws-bigdata-ai/blob/master/ejercicio-4.md)
 
 [Ejercicio 5 - Lambda/Rekognition](https://github.com/paradigmadigital/curso-aws-bigdata-ai/blob/master/ejercicio-5.md)
+
+[Ejercicio 6 - Athena](https://github.com/paradigmadigital/curso-aws-bigdata-ai/blob/master/ejercicio-6.md)
