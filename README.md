@@ -7,3 +7,5 @@
 [Ejercicio 3 - Redshift: load data](https://github.com/paradigmadigital/curso-aws-bigdata-ai/blob/master/ejercicio-3.md)
 
 [Ejercicio 4 - Kinesis](https://github.com/paradigmadigital/curso-aws-bigdata-ai/blob/master/ejercicio-4.md)
+
+[Ejercicio 5 - Lambda/Rekognition](https://github.com/paradigmadigital/curso-aws-bigdata-ai/blob/master/ejercicio-5.md)
